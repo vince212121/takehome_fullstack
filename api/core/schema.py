@@ -28,8 +28,6 @@ class GuestConnection(relay.Connection):
 class Query(graphene.ObjectType):
     examples = graphene.List(ExampleType)
     message = graphene.String(args={'text': graphene.String()})
-    # all_guests = graphene.List(GuestType)
-    # all_guests = relay.ConnectionField(GuestConnection)
     guests = relay.ConnectionField(GuestConnection)
     guest_by_slug = graphene.Field(GuestType, slug=graphene.String(required=True))
 
@@ -38,15 +36,6 @@ class Query(graphene.ObjectType):
 
     def resolve_message(self, info, text):
         return f"The passed in text was: {text}"
-
-    # Queries for all guests and a specific guest from the slug
-    # def resolve_all_guests(self, info):
-    #     try:
-    #         # p = Paginator(GuestBookEntry.objects.all(), 3)
-    #         # return p
-    #         return GuestBookEntry.objects.all()
-    #     except GuestBookEntry.DoesNotExist:
-    #         return None
 
     def resolve_guests(root, info, **kwargs):
         try:

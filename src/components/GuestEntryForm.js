@@ -21,7 +21,7 @@ const CREATE_GUEST = gql`
 
 const GuestEntryForm = () => {
 	const router = useRouter();
-    
+
 	// Used to show a spinning icon and the message when creating a booking
 	const [pending, setPending] = useState(false);
 	const [message, setMessage] = useState("");
@@ -62,9 +62,6 @@ const GuestEntryForm = () => {
 				initialValues={{ username: "", message: "" }}
 				validationSchema={CreateUserSchema}
 				onSubmit={async (values, actions) => {
-					// alert(JSON.stringify(values, null, 2));
-					// actions.setSubmitting(false); // only needs to be provided if onSubmit isn't async
-
 					setPending(true);
 					await createGuest({ username: values.username, message: values.message })
 						.then((result) => {
@@ -75,14 +72,6 @@ const GuestEntryForm = () => {
 							setError("An Error occured . . . Redirecting to home.");
 						});
 
-					// let result = await createGuest({ username: values.username, message: values.message }).then(() => setPending(false));
-
-					// const message = result?.data?.createGuest?.message;
-
-					// Replace this with a message shown under the submit button
-					// Add a delay before going back to the main
-					// alert(`Message: ${message}`);
-
 					// go back to home
 					setTimeout(() => {
 						setPending(false);
@@ -90,18 +79,6 @@ const GuestEntryForm = () => {
 					}, 3000);
 				}}
 			>
-				{/* {(props) => (
-					<form onSubmit={props.handleSubmit} className="p-4 border bg-white rounded-md flex flex-col w-1/2 shadow mx-auto">
-						<label htmlFor="username">Username</label>
-						<Field id="username" name="username" type="text" placeholder="Username" className="border-gray-300 rounded focus:ring-sky-200 focus:border-gray-400" />
-						<label htmlFor="message">Message</label>
-						<Field id="message" name="message" type="text" placeholder="Message" className="border-gray-300 rounded focus:ring-sky-200 focus:border-gray-400" />
-
-						<button type="submit" className="bg-sky-600 hover:bg-sky-500 text-white rounded-md px-3 py-2 mr-auto mt-4">
-							Submit
-						</button>
-					</form>
-				)} */}
 				{({ errors, touched }) => (
 					<Form className="p-4 border bg-white rounded-md flex flex-col sm:w-1/2 w-80 shadow mx-auto">
 						<label htmlFor="username" className="text-base font-semibold">

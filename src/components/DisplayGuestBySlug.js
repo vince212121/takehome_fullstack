@@ -41,9 +41,6 @@ const DisplayGuestBySlug = ({ slug }) => {
 
 	if (guestBySlugResult.fetching) return null;
 
-	// let result = await createGuest({ username: values.username, message: values.message });
-	// const message = result?.data?.createGuest?.message;
-
 	if (guestBySlugResult.error) {
 		console.error(guestBySlugResult.error);
 		return <div className="flex flex-row justify-center items-center h-screen w-screen">Error querying guest by slug endpoint</div>;
@@ -52,7 +49,6 @@ const DisplayGuestBySlug = ({ slug }) => {
 	// deletes a guest and pushes back to home after a delay
 	const onDelete = async () => {
 		setPending(true);
-		// alert(result?.data?.deleteGuest?.message)
 		await deleteGuest({ slug: slug })
 			.then((result) => {
 				setMessage(result?.data?.deleteGuest?.message);
@@ -92,7 +88,6 @@ const DisplayGuestBySlug = ({ slug }) => {
 				<p className="text-base">{guestBySlugResult?.data?.guestBySlug?.createdAt}</p>
 			</div>
 			<div className="flex flex-row">
-				{/* mr-auto */}
 				<Link href="/">
 					<a className="bg-sky-600 hover:bg-sky-500 mr-4 text-white rounded-md px-3 py-2 mt-4">Back</a>
 				</Link>

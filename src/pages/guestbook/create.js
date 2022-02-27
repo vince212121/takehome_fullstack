@@ -3,10 +3,6 @@ import Head from "next/head";
 import NavBar from "../../components/NavBar";
 import GuestEntryForm from "../../components/GuestEntryForm";
 
-/*
-	Note: This should call GuestEntryForm to create a new guest entry
-*/
-
 const create = () => {
 	return (
 		<>

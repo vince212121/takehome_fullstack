@@ -7,10 +7,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import DisplayGuests from "../components/DisplayGuests";
 
-/*
-	- Add Pagination
-	- Maybe add another add button (like a fixed circle on the bottom right for mobile or both)
-*/
 const Home = () => {
 	return (
 		<>
@@ -22,9 +18,7 @@ const Home = () => {
 
 			<NavBar />
 
-			{/* pt-[5.25rem] */}
 			<main className="p-5 bg-gray-100 h-screen">
-				{/* Make button bigger */}
 				<div className="pb-4">
 					<Link href="/guestbook/create">
 						<a className="bg-sky-600 hover:bg-sky-500 text-white rounded-md px-3 py-2 mr-auto mt-4">Create Booking</a>
