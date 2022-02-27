@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: planeasy_takehome_frontend
+    tty: true
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/code
+      - node_modules:/code/node_modules
+    ports:
+      - "3000:3000"
+    entrypoint: /bin/bash -c "yarn dev"
+
+  backend:
+    container_name: planeasy_takehome_backend
+    tty: true
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - ./api:/code
+    ports:
+        - "8000:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: "api.settings"
+    entrypoint: /bin/sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+volumes:
+    node_modules:
